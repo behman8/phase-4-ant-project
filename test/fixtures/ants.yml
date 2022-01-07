@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  queen_name: MyString
+  species: MyString
+  number_of_ants: 1
+  diet: MyString
+
+two:
+  queen_name: MyString
+  species: MyString
+  number_of_ants: 1
+  diet: MyString
