@@ -1,9 +1,12 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
 import GuestLinks from "../Components/GuestLinks";
 import UserLinks from "../Components/UserLinks";
+import {useSelector} from "react-redux";
 
 function NavBar() {
+
+    const {loggedIn} = useSelector(({usersReducer}) => usersReducer)
+
     return (
         <div>
             <nav>

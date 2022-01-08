@@ -1,9 +1,12 @@
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 function GuestLinks() {
     return (
         <div>
-            <h1>GuestLinks</h1>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/login">Login</NavLink></li>
+            <li><NavLink to="/signup">Signup</NavLink></li>
         </div>
     )
 }
