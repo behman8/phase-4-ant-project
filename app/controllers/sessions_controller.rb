@@ -6,12 +6,13 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :created
         else
-            render json: { errors: "User info does not match." }
+            render json: { errors: "User info does not match." }, status: :unprocessable_entity
         end
     end
 
     def destroy
         session.clear
+        render json: {}, status: :ok
     end
 
 end

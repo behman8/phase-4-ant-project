@@ -9,11 +9,13 @@ function NavBar() {
 
     return (
         <div>
-            <nav>
+            <nav className="navbar">
             <a href="/" className="logo"><h1>The Ant's Kingdom</h1></a>
                 <div>
-                    <ul>
-                        {loggedIn ? <UserLinks/> : <GuestLinks/>}
+                    <ul className="all-links">
+                        <div className="menu">
+                            {loggedIn ? <UserLinks/> : <GuestLinks/>}
+                        </div>
                     </ul>
                 </div>
             </nav>

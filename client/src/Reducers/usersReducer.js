@@ -1,4 +1,4 @@
-const usersReducer = (state={user: {}, loggedIn: false, errors: ""}, action) => {
+const usersReducer = (state={user: {}, loggedIn: false, errors: []}, action) => {
     switch (action.type) {
         case "LOGGING_IN":
             return {
@@ -11,16 +11,6 @@ const usersReducer = (state={user: {}, loggedIn: false, errors: ""}, action) => 
                 ...state,
                 user: {},
                 loggedIn: false
-            }
-        case "ERRORS":
-            return {
-                ...state,
-                errors: action.errors
-            }
-        case "CLEAR_ERRORS":
-            return {
-                ...state,
-                errors: ""
             }
         default:
             return state

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2022_01_07_024138) do
     t.string "species"
     t.integer "number_of_ants"
     t.string "diet"
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_ants_on_user_id"
@@ -30,4 +30,5 @@ ActiveRecord::Schema.define(version: 2022_01_07_024138) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "ants", "users"
 end
