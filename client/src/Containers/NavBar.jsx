@@ -1,11 +1,7 @@
 import React from "react";
-import GuestLinks from "../Components/GuestLinks";
-import UserLinks from "../Components/UserLinks";
-import {useSelector} from "react-redux";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
-
-    const {loggedIn} = useSelector(({usersReducer}) => usersReducer)
 
     return (
         <div>
@@ -14,7 +10,8 @@ function NavBar() {
                 <div>
                     <ul className="all-links">
                         <div className="menu">
-                            {loggedIn ? <UserLinks/> : <GuestLinks/>}
+                            <li className="link"><NavLink to="/">Home</NavLink></li>
+                            <li className="link"><NavLink to="/ants">Ants</NavLink></li>
                         </div>
                     </ul>
                 </div>
