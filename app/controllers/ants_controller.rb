@@ -1,8 +1,8 @@
 class AntsController < ApplicationController
 
     def index
-            ants = Ant.all
-            render json: ants, include: :user, status: :ok
+        ants = Ant.all
+        render json: ants, include: :user, status: :ok
     end
 
     def show
@@ -10,7 +10,7 @@ class AntsController < ApplicationController
         if ant
             render json: ant, include: :user, status: :ok
         else
-            render json: {errors: ["Ant not found."]}
+            render json: {errors: ["Ant not found."]}, status: :not_found
         end
     end
 
@@ -36,7 +36,7 @@ class AntsController < ApplicationController
     end
 
     def find_ant
-        Ant.find(params[:id])
+        Ant.find_by(id: params[:id])
     end
 
 end

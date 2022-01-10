@@ -1,22 +1,20 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchAnts} from "../Actions/ant";
+import React, {useEffect, useState} from "react";
 import AntCard from "../Components/AntCard";
 
 function Ants() {
 
-    const dispatch = useDispatch()
-
-    const {ants} = useSelector(({antsReducer}) => antsReducer)
+    const [ants, setAnts] = useState([])
 
     useEffect(() => {
-        fetchAnts(dispatch)
-    }, [dispatch])
+        fetch("/ants")
+          .then((resp) => resp.json())
+          .then(setAnts);
+      }, []);
 
     return (
         <div>
             <h1>Ants</h1>
-            {ants.map(ant => <AntCard ant={ant}/>)}
+            {ants.map(ant => <AntCard key={ant.id} ant={ant}/>)}
         </div>
     )
 }
