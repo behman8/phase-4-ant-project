@@ -42,10 +42,34 @@ function Ants({ user }) {
         })
     }
 
+    const handleLike = async (clickedAnt) => {
+        let likedAnt = ants.map(ant => {
+            if(ant.id === clickedAnt.id){
+                ant.likes = clickedAnt.likes + 1
+                return ant
+            } else {
+                return ant
+            }
+        })
+        let params = {
+            likes: clickedAnt.likes
+        }
+        setAnts([...likedAnt])
+        let resp = await fetch(`/ants/${clickedAnt.id}`, {
+            method: "PATCH",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(params)
+        })
+        let antData = await resp.json()
+    }
+
     return (
         <div>
             <h1>Ants</h1>
-            {ants.map(ant => <AntCard key={ant.id} ant={ant} handleDelete={handleDelete} />)}
+            {ants.map(ant => <AntCard key={ant.id} ant={ant} handleDelete={handleDelete} handleLike={handleLike} />)}
             <AntForm addNewAnt={addNewAnt} user={user} />
         </div>
     )

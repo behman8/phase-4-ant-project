@@ -23,6 +23,16 @@ class AntsController < ApplicationController
         end
     end
 
+    def update
+        ant = find_ant
+        if ant
+            ant.update(ant_params)
+            render json: ant
+        else
+            render json: { errors: "Ant not found." }, status: :not_found
+        end
+    end
+
     def destroy
         ant = find_ant
         if ant
@@ -36,7 +46,7 @@ class AntsController < ApplicationController
     private
 
     def ant_params
-        params.require(:ant).permit(:queen_name, :species, :number_of_ants, :diet, :user_id)
+        params.require(:ant).permit(:queen_name, :species, :number_of_ants, :diet, :user_id, :likes)
     end
 
     def find_ant
