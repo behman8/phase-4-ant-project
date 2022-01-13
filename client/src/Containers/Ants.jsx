@@ -12,7 +12,7 @@ function Ants({ user }) {
           .then(data => setAnts([...data]));
       }, []);
     
-      const addNewAnt = (antData) => {
+    const addNewAnt = (antData) => {
         let params = {...antData}
         fetch("/ants", {
           method: "POST",
@@ -28,12 +28,24 @@ function Ants({ user }) {
               return [...prev, antData]
           })
         })
-      }
+    }
+
+    const handleDelete = async (id) => {
+        let antDelete = ants.filter(ant => ant.id !== id)
+        setAnts([...antDelete])
+        let resp = await fetch(`/ants/${id}`, {
+            method: "DELETE",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            }
+        })
+    }
 
     return (
         <div>
             <h1>Ants</h1>
-            {ants.map(ant => <AntCard key={ant.id} ant={ant}/>)}
+            {ants.map(ant => <AntCard key={ant.id} ant={ant} handleDelete={handleDelete} />)}
             <AntForm addNewAnt={addNewAnt} user={user} />
         </div>
     )

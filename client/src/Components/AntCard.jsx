@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-function AntCard({ant}) {
+function AntCard({ ant, handleDelete }) {
     return (
         <div>
             <h2>Queen's Name:</h2>
@@ -10,6 +10,9 @@ function AntCard({ant}) {
             <p>{ant.species}</p>
             <h3>Owner:</h3>
             <p>{ant.user.username}</p>
+            <h3>Likes:</h3>
+            <p>{ant.likes}</p>
+            <button id="delete-button" onClick={(e) => handleDelete(ant.id)}>Delete <span role="img" aria-label="sad-face"></span> </button>
         </div>
     )
 }
