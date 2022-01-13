@@ -10,13 +10,17 @@ class AntsController < ApplicationController
         if ant
             render json: ant, include: :user, status: :ok
         else
-            render json: {errors: ["Ant not found."]}, status: :not_found
+            render json: {errors: "Ant not found."}, status: :not_found
         end
     end
 
     def create
         ant = Ant.create(ant_params)
-        render json: ant, status: :created
+        if ant
+            render json: ant, include: :user, status: :created
+        else
+            render json: { errors: "Could not create ant." }, status: :unprocessable_entity
+        end
     end
 
     def destroy
@@ -32,7 +36,7 @@ class AntsController < ApplicationController
     private
 
     def ant_params
-        params.permit(:queen_name, :species, :number_of_ants, :diet)
+        params.require(:ant).permit(:queen_name, :species, :number_of_ants, :diet, :user_id)
     end
 
     def find_ant
