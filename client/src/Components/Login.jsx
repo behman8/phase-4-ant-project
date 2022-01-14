@@ -20,6 +20,7 @@ function Login({ onLogin }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+                <h1>Login to View More!</h1>
                 <label htmlFor="username">Username:</label>
                 <input
                     type="text"

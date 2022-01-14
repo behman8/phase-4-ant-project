@@ -11,8 +11,6 @@ function App() {
 
   const [user, setUser] = useState(null)
 
-  // const [ants, setAnts] = useState([])
-
   useEffect(() => {
     fetch("/me").then((resp) => {
       if(resp.ok) {
@@ -20,27 +18,6 @@ function App() {
       }
     });
   }, []);
-
-  // useEffect(() => {
-  //   fetch("/ants")
-  //     .then((resp) => resp.json())
-  //     .then(setAnts);
-  // }, []);
-
-  // const addNewAnt = (antData) => {
-  //   let params = {...antData}
-  //   fetch("/ants", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(params)
-  //   })
-  //   .then((resp) => resp.json())
-  //   .then(antData => {
-  //     setAnts(antData)
-  //   })
-  // }
 
   if(user) {
     return (
@@ -61,7 +38,12 @@ function App() {
     return (
       <div>
         <NavBar/>
-            {<Login onLogin={setUser} />}
+        {<Login onLogin={setUser} />}
+        <main>
+          <Routes>
+            <Route exact path="/" element={<Home />} ></Route>
+          </Routes>
+        </main>
       </div>
     )
   };
